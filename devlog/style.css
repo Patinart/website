@@ -1,0 +1,89 @@
+/* 全体設定 */
+body {
+  margin: 0;
+  display: flex;
+  font-family: "Noto Sans JP", sans-serif;
+  background: #dcd2c8; 
+  color: #1B4B5A; /* firework */
+}
+
+/* 左サイドバー */
+.sidebar {
+  width: 220px;
+  background: #131f33; 
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  border-right: 1px solid #F55449; /* taupe */
+}
+
+.sidebar h2 {
+  font-weight: 700;
+  font-size: 2.0rem;
+  margin-bottom: 15px;
+  color: #F55449;
+}
+
+.sidebar ul {
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar li {
+  margin: 10px 0;
+}
+
+.sidebar a {
+  color: #dcd2c8;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  color: #1B4B5A; /* firework */
+}
+
+/* 右側コンテンツ */
+.content {
+  margin-left: 220px;
+  padding: 25px;
+  box-sizing: border-box;
+  width: calc(100% - 220px);
+}
+
+.title {
+  border-bottom: 1px solid #8E7970;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+/* 記事一覧バー */
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.post-btn {
+  background: #1B4B5A; /* oceanic */
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #f5f3ef;
+  font-size: 0.9rem;
+}
+
+.post-btn:hover {
+  background: #F55449;
+}
+
+/* 記事本文 */
+.post-box {
+  background: rgba(255,255,255, 0.05);
+  border: 1px solid #8E7970;
+  padding: 20px;
+  border-radius: 8px;
