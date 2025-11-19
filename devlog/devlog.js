@@ -1,44 +1,39 @@
-// Devlog 記事のデータ（必要に応じて追加）
+// 読み込みたい記事一覧（新しい順）
 const posts = [
-  {
-    title: "サイト公開しました！",
-    date: "2025/01/10",
-    body: `
-      GitHub Pages を使って、自分のホームページを公開しました。  
-      ここでは制作中のゲームやイラスト、日々の進捗を記録していきます。
-    `
-  },
-  {
-    title: "ゲーム構想メモ",
-    date: "2025/01/20",
-    body: `
-      新作ゲームの世界観メモを作成中。  
-      ダークで静かな空気感を重視した作品にしたいと考えています。
-    `
-  }
+  { id: "2025-01", title: "ゲーム企画の初期メモ" },
+  { id: "2024-12", title: "進捗まとめ（12月）" },
+  { id: "2024-11", title: "背景デザインの研究" }
 ];
 
+// 記事一覧バーを作成
 const list = document.getElementById("post-list");
-const article = document.getElementById("post");
 
-// 記事一覧バー生成
-posts.forEach((p, i) => {
-  const item = document.createElement("button");
-  item.className = "post-btn";
-  item.textContent = `${p.date} - ${p.title}`;
-  item.onclick = () => load(i);
-  list.appendChild(item);
+posts.forEach(post => {
+  const btn = document.createElement("button");
+  btn.className = "post-btn";
+  btn.textContent = post.title;
+
+  btn.addEventListener("click", () => {
+    loadPost(post.id);
+  });
+
+  list.appendChild(btn);
 });
 
-// 記事読み込み
-function load(i) {
-  const p = posts[i];
-  article.innerHTML = `
-    <h2>${p.title}</h2>
-    <p><small>${p.date}</small></p>
-    <p>${p.body}</p>
-  `;
+// 記事読み込み処理
+function loadPost(id) {
+  const postArea = document.getElementById("post");
+  fetch(`./posts/${id}.html`)
+    .then(res => res.text())
+    .then(html => {
+      postArea.innerHTML = `<div class="post-box">${html}</div>`;
+    })
+    .catch(() => {
+      postArea.innerHTML = `<p>記事が見つかりません。</p>`;
+    });
 }
 
-// 初期記事を表示
-load(0);
+// ページ読み込み時に最新記事を表示
+window.onload = () => {
+  loadPost(posts[0].id);
+};
