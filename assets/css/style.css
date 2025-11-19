@@ -1,13 +1,5 @@
-/* -----------------------------------
-   全体（背景・フォント）
------------------------------------ */
-body {
-  margin: 0;
-  display: flex;
-  font-family: "Noto Sans JP", sans-serif;
-  background: #dcd2c8; 
-  color: #523969;
-}
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;500;700&display=swap');
+
 
 /* =======================================
    基本カラー
@@ -41,7 +33,7 @@ body {
 body {
   margin: 0;
   display: flex;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Kaisei Opti", serif; /* ← serifをフォールバックに */
   background: var(--bg-color);
   color: var(--text-main);
 }
