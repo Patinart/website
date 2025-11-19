@@ -14,19 +14,19 @@ body {
 ======================================= */
 /* 背景（ラベンダーグレー） */
 :root {
-  --bg-color: #e7e2ea;
+  --bg-color: #e4e0d7;
 
   /* サイドバー（深いブルーブラック） */
   --sidebar-bg: #131f33;
 
   /* アクセントカラー（ラベンダー / ピンク） */
-  --accent-1: #e4d99f; 
+  --accent-1: #e2d28a; 
   --accent-2: #daa2db; 
-  --accent-3: #e8d1f0; 
+  --accent-3: #e4d99f;
 
-  /* 強いポイントカラー（前回の firework 残し） */
+  /* 強いポイントカラー */
   --highlight: #a065ec;
-
+  
   /* テキスト */
   --text-main: #2b2b2b;
   --text-light: #e4dea7;
