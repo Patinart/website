@@ -1,12 +1,14 @@
+@charset "UTF-8";
+
 /* =========================================
-   設定 (Variables & Reset)
+   1. 設定 (Variables & Reset)
    ========================================= */
 :root {
-    /* Patina Color Palette */
-    --c-dark: #1e1b18;         /* 黒に近い焦げ茶（ベース） */
-    --c-bronze: #8c5e3c;       /* 銅色 */
-    --c-patina: #408a7e;       /* パティナ（緑青）色 */
-    --c-sand: #e6dfd3;         /* 砂色（文字色） */
+    /* Colors */
+    --c-dark: #1e1b18;
+    --c-bronze: #8c5e3c;
+    --c-patina: #408a7e;
+    --c-sand: #e6dfd3;
     --c-white: #ffffff;
     
     /* Fonts */
@@ -18,27 +20,25 @@
     --sidebar-width: 280px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-html {
-    scroll-behavior: smooth;
-}
-
+/* =========================================
+   2. ベーススタイル
+   ========================================= */
 body {
     font-family: var(--f-jp);
     color: var(--c-sand);
-    background-color: var(--c-dark);
     line-height: 1.8;
+    background-color: var(--c-dark); /* 全体の背景は暗い色に */
     overflow-x: hidden;
 }
 
+/* 以前の背景設定をリセット */
+#bg-layer { display: none; }
 
 /* =========================================
-   サイドバー (Sidebar)
+   3. サイドバー (Sidebar)
    ========================================= */
 #sidebar {
     position: fixed;
@@ -47,14 +47,12 @@ body {
     width: var(--sidebar-width);
     height: 100vh;
     background: rgba(30, 27, 24, 0.95);
-    backdrop-filter: blur(10px);
     border-right: 1px solid rgba(255,255,255,0.1);
     padding: 3rem 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 100;
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
 }
 
 .site-title {
@@ -62,7 +60,7 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     letter-spacing: 2px;
-    color: var(--c-patina); /* タイトルに緑青色 */
+    color: var(--c-patina);
     margin-bottom: 0.5rem;
 }
 
@@ -73,10 +71,7 @@ body {
     letter-spacing: 1px;
 }
 
-.nav-menu ul {
-    list-style: none;
-    margin-top: 2rem;
-}
+.nav-menu ul { list-style: none; margin-top: 2rem; }
 
 .nav-link {
     display: block;
@@ -90,101 +85,68 @@ body {
     position: relative;
 }
 
-.nav-link:hover, .nav-link.active {
-    color: var(--c-bronze);
-    padding-left: 10px;
-}
-
-/* アクティブ時の左線 */
+.nav-link:hover, .nav-link.active { color: var(--c-bronze); padding-left: 10px; }
 .nav-link.active::before {
-    content: '';
-    position: absolute;
-    left: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 1px;
-    background: var(--c-bronze);
+    content: ''; position: absolute; left: -20px; top: 50%;
+    transform: translateY(-50%); width: 10px; height: 1px; background: var(--c-bronze);
 }
 
-.menu-toggle { display: none; } /* デスクトップでは非表示 */
+/* ハンバーガーボタン（PCでは非表示） */
+.menu-toggle { display: none; }
 
 /* =========================================
-   ★パララックス背景設定 (額縁デザイン)
-   ========================================= */
-body {
-    font-family: var(--f-jp);
-    color: var(--c-sand);
-    line-height: 1.8;
-    overflow-x: hidden;
-
-    /* ▼▼ ここがパララックスの魔法です ▼▼ */
-    /* 1. 額縁画像を指定 */
-    background-image: url('../img/frame.png');
-    
-    /* 2. 背景を画面に対して「固定」する（スクロールしても動かない） */
-    background-attachment: fixed;
-    
-    /* 3. 画像を画面いっぱいに引き伸ばす */
-    background-size: 100% 100%;
-    
-    /* 4. 画像がない部分は黒くする */
-    background-color: #000;
-    
-    /* 5. 画像を中央寄せ */
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* ★以前の #bg-layer 関連のCSSはすべて削除してください */
-
-/* =========================================
-   メインコンテンツ調整
+   4. メインコンテンツ & フレーム背景
    ========================================= */
 #main-content {
     margin-left: var(--sidebar-width);
-    padding: 0;
     min-height: 100vh;
-    
-    /* 額縁の「枠」に文字が被らないように余白（パディング）を入れる */
-    /* 上下左右に余裕を持たせ、コンテンツが額縁の「黒い部分」に収まるようにします */
-    padding: 4rem 2rem; 
+    padding: 4rem 2rem;
+
+    /* ▼▼ フレーム背景をここに移動しました ▼▼ */
+    background-image: url('../img/frame.png');
+    /* コンテンツに合わせてスクロールさせるか、固定するか */
+    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center; /* 中央に配置 */
+    background-repeat: no-repeat;
+    /* 背景色を透過させて重ねる */
+    background-blend-mode: multiply;
+    background-color: #000; 
 }
 
-/* コンテンツ全体を少し暗くして読みやすくする場合（任意） */
+/* コンテンツエリアの調整 */
 .section {
-    /* 背景色を少し透過させることで、額縁の黒い背景と馴染ませる */
-    background-color: transparent; 
-    border-bottom: none; /* 線も消してシームレスに */
-    margin-bottom: 5rem; /* セクション間の余白 */
+    position: relative;
+    min-height: 80vh; /* 画面の8割くらいの高さを確保 */
+    margin-bottom: 5rem;
 }
 
 /* =========================================
-   ★ロゴとタイトルのデザイン変更
+   5. HOMEセクション (ロゴ & タイトル)
    ========================================= */
+.full-height {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    min-height: 90vh; /* 高さを確保 */
+}
 
-/* ロゴ画像のスタイル */
+.home-content { width: 100%; max-width: 800px; }
+
 .home-logo {
     display: block;
     width: 100%;
-    max-width: 500px; /* PCでの最大幅 */
+    max-width: 500px;
     height: auto;
-    margin-bottom: 2rem; /* タイトルとの間隔 */
-    
-    /* ロゴ画像の背景（薄いグレー）を馴染ませる処理 */
-    /* 背景が黒いサイトなので、乗算(multiply)か、明度調整を行います */
-    /* 画像そのままで良ければ filter は削除してください */
+    margin: 0 auto 2rem auto;
     filter: sepia(0.2) contrast(1.1); 
-    border-radius: 4px;
 }
 
-/* タイトル文字サイズを縮小してメリハリをつける */
 .hero-title {
     font-family: var(--f-en-head);
-    
-    /* フォントサイズを大幅に小さく変更（以前は 3rem ~ 7rem でした） */
-    font-size: clamp(1.5rem, 4vw, 3rem); 
-    
+    font-size: clamp(1.5rem, 4vw, 3rem);
     line-height: 1.2;
     font-weight: 700;
     color: var(--c-white);
@@ -192,198 +154,151 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* "Time & Rust" の部分 */
 .hero-title .thin-text {
-    font-weight: 400;
-    font-style: italic;
-    color: var(--c-patina);
-    font-size: 0.9em; /* ベースよりさらに少し小さく */
+    font-weight: 400; font-style: italic; color: var(--c-patina); font-size: 0.9em;
 }
 
-
 /* =========================================
-   共通見出し (Headings)
+   6. その他パーツ (カード, ボタンなど)
    ========================================= */
+.container { max-width: 1000px; margin: 0 auto; padding-top: 2rem; }
+
 .section-title {
     font-family: var(--f-en-head);
     font-size: 4rem;
-    color: rgba(255,255,255,0.1); /* 背景に溶け込む巨大文字 */
-    position: absolute;
-    left: 2rem;
-    top: 2rem;
-    pointer-events: none;
-    z-index: 0;
+    color: rgba(255,255,255,0.1);
+    position: absolute; left: 0; top: -2rem;
+    pointer-events: none; z-index: 0;
 }
 
-.section {
-    position: relative;
-    min-height: 100vh;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-/* =========================================
-   カードデザイン (Games & Art)
-   ========================================= */
+/* カード */
 .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    position: relative;
-    z-index: 1;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem; position: relative; z-index: 1;
 }
-
 .card {
-    background: rgba(255,255,255,0.03);
-    border-radius: 4px;
-    overflow: hidden;
+    background: rgba(255,255,255,0.03); border-radius: 4px; overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Material Design Shadow */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+.card-image img { width: 100%; height: 250px; object-fit: cover; display: block; transition: filter 0.3s; }
+.card:hover .card-image img { filter: brightness(1.1); }
+.card-content { padding: 1.5rem; }
+.card-content h4 { font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--c-patina); }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-.card-image img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    display: block;
-    transition: filter 0.3s;
-}
-
-.card:hover .card-image img {
-    filter: brightness(1.1);
-}
-
-.card-content {
-    padding: 1.5rem;
-}
-
-.card-content h4 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: var(--c-patina);
-}
-
+/* ボタン */
 .btn-text {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--c-bronze);
-    text-decoration: none;
-    font-weight: bold;
-    font-family: var(--f-en-body);
-    font-size: 0.9rem;
+    display: inline-block; margin-top: 1rem; color: var(--c-bronze);
+    text-decoration: none; font-weight: bold; font-family: var(--f-en-body); font-size: 0.9rem;
 }
-
-/* Masonry風グリッド (Art) */
-.masonry-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    z-index: 1;
-    position: relative;
+.center-btn { text-align: center; margin-top: 2rem; }
+.btn-outline {
+    display: inline-block; padding: 10px 30px; border: 1px solid var(--c-sand);
+    color: var(--c-sand); text-decoration: none; font-family: var(--f-en-body);
+    letter-spacing: 1px; transition: all 0.3s;
 }
+.btn-outline:hover { background: var(--c-sand); color: var(--c-dark); }
 
-.art-item {
-    flex: 1 1 300px;
-    max-width: 400px;
-}
-
+/* アート (Masonry) */
+.masonry-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; z-index: 1; position: relative; }
+.art-item { flex: 1 1 300px; max-width: 400px; }
 .art-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    transition: transform 0.3s;
-    cursor: pointer; /* Lightboxのトリガーっぽく */
+    width: 100%; height: auto; border-radius: 4px;
+    transition: transform 0.3s; cursor: pointer;
 }
+.art-item:hover img { transform: scale(1.02); filter: drop-shadow(0 10px 15px rgba(64, 224, 208, 0.2)); }
 
-.art-item:hover img {
-    transform: scale(1.02);
-    filter: drop-shadow(0 10px 15px rgba(64, 224, 208, 0.2));
-}
-
-/* =========================================
-   Devlogリスト
-   ========================================= */
+/* Devlog */
 .log-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: rgba(255,255,255,0.1); /* Divider用 */
-    margin: 3rem 0;
-    z-index: 1;
-    position: relative;
+    display: flex; flex-direction: column; gap: 1px;
+    background: rgba(255,255,255,0.1); margin: 3rem 0; z-index: 1; position: relative;
 }
-
 .log-item {
-    background: var(--c-dark);
-    padding: 1.5rem 2rem;
-    text-decoration: none;
-    color: var(--c-sand);
-    display: flex;
-    align-items: center;
-    transition: background 0.3s;
+    background: var(--c-dark); padding: 1.5rem 2rem; text-decoration: none; color: var(--c-sand);
+    display: flex; align-items: center; transition: background 0.3s;
 }
-
-.log-item:hover {
-    background: rgba(255,255,255,0.05);
-}
-
-.log-date {
-    font-family: var(--f-en-body);
-    color: var(--c-patina);
-    margin-right: 2rem;
-    font-size: 0.9rem;
-}
-
-.log-title {
-    flex-grow: 1;
-    font-size: 1.1rem;
-}
-
+.log-item:hover { background: rgba(255,255,255,0.05); }
+.log-date { font-family: var(--f-en-body); color: var(--c-patina); margin-right: 2rem; font-size: 0.9rem; }
+.log-title { flex-grow: 1; font-size: 1.1rem; }
 .arrow { color: var(--c-bronze); }
 
 /* =========================================
-   ボタン類
-   ========================================= */
-.center-btn { text-align: center; margin-top: 2rem; }
-
-.btn-outline {
-    display: inline-block;
-    padding: 10px 30px;
-    border: 1px solid var(--c-sand);
-    color: var(--c-sand);
-    text-decoration: none;
-    font-family: var(--f-en-body);
-    letter-spacing: 1px;
-    transition: all 0.3s;
-}
-
-.btn-outline:hover {
-    background: var(--c-sand);
-    color: var(--c-dark);
-}
-
-/* =========================================
-   レスポンシブ (スマホ対応)
+   7. レスポンシブ (スマホ対応) ★重要
    ========================================= */
 @media (max-width: 900px) {
-    /* スマホでは額縁の比率が変わるので、画像全体が見えるように調整 */
-    body {
-        background-size: cover; /* 比率を維持して全体を覆う */
-        background-position: center top;
-    }
-
-    #main-content {
-        margin-left: 0;
-        padding: 6rem 1.5rem; /* スマホ用余白 */
-    }
     
-    .home-logo {
-        max-width: 280px; /* スマホでのロゴサイズ */
+    /* --- サイドバーの設定変更 --- */
+    #sidebar {
+        width: 100%;
+        height: 70px; /* 高さを固定して画面を圧迫しないようにする */
+        flex-direction: row;
+        align-items: center;
+        padding: 0 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-}
 
+    .site-title { font-size: 1.5rem; margin: 0; }
+    .site-subtitle { display: none; }
+
+    /* --- メニュー（普段は隠す） --- */
+    .nav-menu {
+        position: fixed;
+        top: 70px; /* バーの下から開始 */
+        right: 0;  /* 右側に配置 */
+        width: 80%; /* 画面の8割幅 */
+        height: calc(100vh - 70px);
+        background: rgba(30, 27, 24, 0.98); /* 背景色を濃く */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        /* アニメーション用設定 */
+        transform: translateX(100%); /* 画面の外（右）に飛ばしておく */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* クラスがついたときだけ表示 */
+    .nav-menu.open {
+        transform: translateX(0);
+    }
+
+    /* --- メインコンテンツの調整 --- */
+    #main-content {
+        margin-left: 0; /* 左の余白を消す */
+        padding: 6rem 1.5rem 2rem 1.5rem; /* 上部の余白を確保（バーに被らないように） */
+        background-position: center top; /* スマホでは上基準に */
+        background-size: cover;
+        background-attachment: scroll; /* スマホではパララックスをオフにすると安定します（任意） */
+    }
+
+    .home-logo { max-width: 240px; }
+    .section-title { font-size: 2.5rem; top: 0; }
+
+    /* --- ハンバーガーボタン --- */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 20px;
+        position: relative;
+        z-index: 1100; /* メニューより手前に */
+    }
+    .menu-toggle span {
+        display: block;
+        width: 100%; height: 2px; background: var(--c-sand);
+        position: absolute; transition: 0.3s;
+    }
+    .menu-toggle span:nth-child(1) { top: 0; }
+    .menu-toggle span:nth-child(2) { top: 9px; }
+    .menu-toggle span:nth-child(3) { top: 18px; }
+
+    /* ボタンのアニメーション */
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
+}
