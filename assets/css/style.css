@@ -36,27 +36,6 @@ body {
     overflow-x: hidden;
 }
 
-/* =========================================
-   背景切り替えレイヤー (Background Layer)
-   ========================================= */
-#bg-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: -1;
-    transition: background 1s ease, opacity 1s ease;
-    /* パターンオーバーレイ（ざらつき感を出す） */
-    background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23000000" fill-opacity="0.05"%3E%3Cpath d="M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z"/%3E%3C/g%3E%3C/svg%3E');
-}
-
-/* 各セクションごとの背景色定義 */
-.bg-default { background-color: #1e1b18; }
-.bg-home    { background: linear-gradient(135deg, #000000 0%, #2c241b 100%); }
-.bg-games   { background: linear-gradient(135deg, #1a1a1a 0%, #2f4f4f 100%); } /* 暗い青緑 */
-.bg-art     { background: linear-gradient(135deg, #1e1b18 0%, #5d4037 100%); } /* 茶系 */
-.bg-devlog  { background: linear-gradient(135deg, #232526 0%, #414345 100%); } /* グレー */
 
 /* =========================================
    サイドバー (Sidebar)
@@ -131,62 +110,94 @@ body {
 .menu-toggle { display: none; } /* デスクトップでは非表示 */
 
 /* =========================================
-   メインコンテンツ (Main Content)
+   ★パララックス背景設定 (額縁デザイン)
    ========================================= */
-#main-content {
-    margin-left: var(--sidebar-width); /* サイドバー分空ける */
-    padding: 0;
-    min-height: 100vh;
-    transition: margin 0.4s;
+body {
+    font-family: var(--f-jp);
+    color: var(--c-sand);
+    line-height: 1.8;
+    overflow-x: hidden;
+
+    /* ▼▼ ここがパララックスの魔法です ▼▼ */
+    /* 1. 額縁画像を指定 */
+    background-image: url('../img/frame.png');
+    
+    /* 2. 背景を画面に対して「固定」する（スクロールしても動かない） */
+    background-attachment: fixed;
+    
+    /* 3. 画像を画面いっぱいに引き伸ばす */
+    background-size: 100% 100%;
+    
+    /* 4. 画像がない部分は黒くする */
+    background-color: #000;
+    
+    /* 5. 画像を中央寄せ */
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 6rem 4rem;
+/* ★以前の #bg-layer 関連のCSSはすべて削除してください */
+
+/* =========================================
+   メインコンテンツ調整
+   ========================================= */
+#main-content {
+    margin-left: var(--sidebar-width);
+    padding: 0;
+    min-height: 100vh;
+    
+    /* 額縁の「枠」に文字が被らないように余白（パディング）を入れる */
+    /* 上下左右に余裕を持たせ、コンテンツが額縁の「黒い部分」に収まるようにします */
+    padding: 4rem 2rem; 
+}
+
+/* コンテンツ全体を少し暗くして読みやすくする場合（任意） */
+.section {
+    /* 背景色を少し透過させることで、額縁の黒い背景と馴染ませる */
+    background-color: transparent; 
+    border-bottom: none; /* 線も消してシームレスに */
+    margin-bottom: 5rem; /* セクション間の余白 */
 }
 
 /* =========================================
-   HOMEセクション (Hero)
+   ★ロゴとタイトルのデザイン変更
    ========================================= */
-.full-height {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+
+/* ロゴ画像のスタイル */
+.home-logo {
+    display: block;
+    width: 100%;
+    max-width: 500px; /* PCでの最大幅 */
+    height: auto;
+    margin-bottom: 2rem; /* タイトルとの間隔 */
+    
+    /* ロゴ画像の背景（薄いグレー）を馴染ませる処理 */
+    /* 背景が黒いサイトなので、乗算(multiply)か、明度調整を行います */
+    /* 画像そのままで良ければ filter は削除してください */
+    filter: sepia(0.2) contrast(1.1); 
+    border-radius: 4px;
 }
 
-.home-content {
-    text-align: left;
-    padding: 0 4rem;
-    z-index: 2;
-}
-
-/* ジャンプ率の高いタイポグラフィ */
+/* タイトル文字サイズを縮小してメリハリをつける */
 .hero-title {
     font-family: var(--f-en-head);
-    font-size: clamp(3rem, 8vw, 7rem); /* レスポンシブな巨大フォント */
-    line-height: 0.9;
+    
+    /* フォントサイズを大幅に小さく変更（以前は 3rem ~ 7rem でした） */
+    font-size: clamp(1.5rem, 4vw, 3rem); 
+    
+    line-height: 1.2;
     font-weight: 700;
     color: var(--c-white);
-    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    margin-bottom: 2rem;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    margin-bottom: 1.5rem;
 }
 
+/* "Time & Rust" の部分 */
 .hero-title .thin-text {
-    font-weight: 400; /* 細いウェイト */
+    font-weight: 400;
     font-style: italic;
     color: var(--c-patina);
-}
-
-.hero-desc {
-    font-size: 1.1rem;
-    opacity: 0.8;
-    border-left: 2px solid var(--c-bronze);
-    padding-left: 1.5rem;
-    margin-left: 5px;
-}
+    font-size: 0.9em; /* ベースよりさらに少し小さく */
 
 /* =========================================
    共通見出し (Headings)
@@ -355,73 +366,22 @@ body {
 }
 
 /* =========================================
-   レスポンシブ (Responsive 900px)
+   レスポンシブ (スマホ対応)
    ========================================= */
 @media (max-width: 900px) {
-    #sidebar {
-        width: 100%;
-        height: 70px; /* ヘッダーとして機能 */
-        flex-direction: row;
-        align-items: center;
-        padding: 0 1.5rem;
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+    /* スマホでは額縁の比率が変わるので、画像全体が見えるように調整 */
+    body {
+        background-size: cover; /* 比率を維持して全体を覆う */
+        background-position: center top;
     }
 
-    .site-title { font-size: 1.5rem; margin: 0; }
-    .site-subtitle { display: none; }
-
-    /* メニューの開閉制御 */
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: var(--c-dark);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transform: translateX(100%); /* 右に隠す */
-        transition: transform 0.3s ease;
-        border-top: 1px solid rgba(255,255,255,0.1);
+    #main-content {
+        margin-left: 0;
+        padding: 6rem 1.5rem; /* スマホ用余白 */
     }
-
-    .nav-menu.open {
-        transform: translateX(0);
-    }
-
-    .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        cursor: pointer;
-        width: 30px;
-        height: 20px;
-        position: relative;
-    }
-
-    .menu-toggle span {
-        display: block;
-        width: 100%;
-        height: 2px;
-        background: var(--c-sand);
-        position: absolute;
-        transition: 0.3s;
-    }
-
-    .menu-toggle span:nth-child(1) { top: 0; }
-    .menu-toggle span:nth-child(2) { top: 9px; }
-    .menu-toggle span:nth-child(3) { top: 18px; }
-
-    /* ハンバーガーのアニメーション */
-    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
-    .menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
-
-    /* メインコンテンツのマージン解除 */
-    #main-content { margin-left: 0; padding-top: 70px; }
     
-    .hero-title { font-size: 3.5rem; }
-    .container { padding: 3rem 1.5rem; }
+    .home-logo {
+        max-width: 280px; /* スマホでのロゴサイズ */
+    }
 }
+
