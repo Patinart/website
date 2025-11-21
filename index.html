@@ -1,34 +1,140 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Patinart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patinart</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Kaisei+Decol&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
 
-  <!-- 同じ階層なので ./assets で正しい -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="./assets/js/main.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
 
-  <!-- 左サイドバー -->
-  <aside class="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./art/index.html">Art</a></li>
-      <li><a href="./games/index.html">Games</a></li>
-      <li><a href="./devlog/index.html">Devlog</a></li>
-    </ul>
-  </aside>
+    <div id="bg-layer" class="bg-default"></div>
 
-  <!-- 右メイン -->
-  <main class="content">
-    <h1 class="page-title">Patinart</h1>
-    <div class="page-body">
-      <p>絵やゲームを作るのが趣味な人の個人サイトです。</p>
-    </div>
-  </main>
+    <header id="sidebar">
+        <div class="brand">
+            <h1 class="site-title">Patinart</h1>
+            <p class="site-subtitle">Patina & Art Works</p>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#games" class="nav-link">Games</a></li>
+                <li><a href="#art" class="nav-link">Art</a></li>
+                <li><a href="#devlog" class="nav-link">Devlog</a></li>
+            </ul>
+            <div class="nav-footer">
+                <small>&copy; 2025 Patinart</small>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        
+        <section id="home" class="section full-height" data-bg="bg-home">
+            <div class="home-content">
+                <h2 class="hero-title">Creation<br>with<br><span class="thin-text">Time & Rust</span></h2>
+                <p class="hero-desc">時を経て美しくなるもの。<br>ゲーム開発とイラストレーションの記録。</p>
+            </div>
+        </section>
+
+        <section id="games" class="section" data-bg="bg-games">
+            <div class="container">
+                <h3 class="section-title">Games</h3>
+                <div class="card-grid">
+                    <article class="card">
+                        <div class="card-image">
+                            <a href="https://placehold.co/800x600/2F4F4F/FFF?text=Game+Screen+1" data-lightbox="games" data-title="Project: Clockwork">
+                                <img src="https://placehold.co/600x400/2F4F4F/FFF?text=Project+Clockwork" alt="Game 1">
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <h4>Project: Clockwork</h4>
+                            <p>錆びついた時計塔を登るアクションゲーム。</p>
+                            <a href="./games/index.html" class="btn-text">View Details &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-image">
+                            <a href="https://placehold.co/800x600/556B2F/FFF?text=Game+Screen+2" data-lightbox="games" data-title="Forest of Patina">
+                                <img src="https://placehold.co/600x400/556B2F/FFF?text=Forest+of+Patina" alt="Game 2">
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <h4>Forest of Patina</h4>
+                            <p>緑青の森を探索するADV。</p>
+                            <a href="./games/index.html" class="btn-text">View Details &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="art" class="section" data-bg="bg-art">
+            <div class="container">
+                <h3 class="section-title">Art Works</h3>
+                <div class="masonry-grid">
+                    <div class="art-item">
+                        <a href="https://placehold.co/800x1000/8B4513/FFF?text=Sketch" data-lightbox="art" data-title="Bronze Sketch">
+                            <img src="https://placehold.co/400x500/8B4513/FFF?text=Sketch" alt="Art 1">
+                        </a>
+                    </div>
+                    <div class="art-item">
+                        <a href="https://placehold.co/800x600/CD853F/FFF?text=Landscape" data-lightbox="art" data-title="Sunset Oxide">
+                            <img src="https://placehold.co/400x300/CD853F/FFF?text=Landscape" alt="Art 2">
+                        </a>
+                    </div>
+                    <div class="art-item">
+                        <a href="https://placehold.co/800x800/2F2F2F/FFF?text=Portrait" data-lightbox="art" data-title="Noir">
+                            <img src="https://placehold.co/400x400/2F2F2F/FFF?text=Portrait" alt="Art 3">
+                        </a>
+                    </div>
+                </div>
+                <div class="center-btn">
+                    <a href="./art/index.html" class="btn-outline">View Gallery</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="devlog" class="section" data-bg="bg-devlog">
+            <div class="container">
+                <h3 class="section-title">Devlog</h3>
+                <div class="log-list">
+                    <a href="./devlog/posts/2025-01-xx.html" class="log-item">
+                        <span class="log-date">2025.01.20</span>
+                        <h4 class="log-title">Webサイト「Patinart」を開設しました</h4>
+                        <span class="arrow">&rarr;</span>
+                    </a>
+                    <a href="#" class="log-item">
+                        <span class="log-date">2024.12.15</span>
+                        <h4 class="log-title">Unityのシェーダー開発進捗</h4>
+                        <span class="arrow">&rarr;</span>
+                    </a>
+                </div>
+                <div class="center-btn">
+                    <a href="./devlog/index.html" class="btn-outline">All Logs</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+    
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>

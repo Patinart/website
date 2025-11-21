@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Patinart</title>
-  <!-- 同じ階層なので ./assets で正しい -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="./assets/js/devlog.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devlog - My Atelier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
 <body>
+    <div class="antique-frame"></div>
 
-  <!-- 左サイドバー -->
-  <aside class="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./art/index.html">Art</a></li>
-      <li><a href="./games/index.html">Games</a></li>
-      <li><a href="./devlog/index.html">Devlog</a></li>
-    </ul>
-  </aside>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Atelier Code</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../games/index.html">Games</a></li>
+                <li><a href="../art/index.html">Art</a></li>
+                <li><a href="./index.html" class="active">Devlog</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- 右メイン -->
-  <main class="content">
-    <h1 class="page-title">Devlog</h1>
-    <div class="page-body">
-      <!-- ページごとの内容はここに入れる -->
-      <p>日記です</p>
-    </div>
-  </main>
+    <main class="container">
+        <div class="fade-in-up">
+            <h2>Development Log</h2>
+            <p>制作過程の記録。</p>
+        </div>
 
+        <ul class="devlog-list fade-in-up" style="list-style: none; margin-top: 2rem;">
+            <li style="margin-bottom: 2rem; border-bottom: 1px solid #3a3025; padding-bottom: 1rem;">
+                <span style="color: var(--accent-color); font-size: 0.9rem;">2025.01.20</span>
+                <h3><a href="./posts/2025-11-21.html" style="color: var(--text-color); text-decoration: none;">Webサイトを開設しました</a></h3>
+                <p style="font-size: 0.9rem; opacity: 0.8;">ポートフォリオサイトの作成にあたって、アンティークなデザインを採用しました。</p>
+            </li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Atelier. All rights reserved.</p>
+    </footer>
+    
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/devlog.js"></script>
 </body>
 </html>

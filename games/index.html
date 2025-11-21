@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Patinart</title>
-  <!-- 同じ階層なので ./assets で正しい -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="./assets/js/main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - My Atelier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
 <body>
+    <div class="antique-frame"></div>
 
-  <!-- 左サイドバー -->
-  <aside class="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./art/index.html">Art</a></li>
-      <li><a href="./games/index.html">Games</a></li>
-      <li><a href="./devlog/index.html">Devlog</a></li>
-    </ul>
-  </aside>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Atelier Code</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./index.html" class="active">Games</a></li>
+                <li><a href="../art/index.html">Art</a></li>
+                <li><a href="../devlog/index.html">Devlog</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- 右メイン -->
-  <main class="content">
-    <h1 class="page-title">Games</h1>
-    <div class="page-body">
-      <!-- ページごとの内容はここに入れる -->
-      <p>作ったゲームです</p>
-    </div>
-  </main>
+    <main class="container">
+        <div class="fade-in-up">
+            <h2>Game Collection</h2>
+            <p>制作したゲーム作品のアーカイブ。</p>
+        </div>
 
+        <div class="grid-gallery fade-in-up">
+            <div class="card">
+                <img src="https://placehold.co/600x400/2b221b/d4af37?text=RPG+Project" alt="Game 1">
+                <h3>The Lost Clock</h3>
+                <p>時をかけるRPG。Unity製。</p>
+            </div>
+            
+            <div class="card">
+                <img src="https://placehold.co/600x400/2b221b/d4af37?text=Puzzle+Game" alt="Game 2">
+                <h3>Gear & Rose</h3>
+                <p>歯車をつなぐパズルゲーム。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Atelier. All rights reserved.</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>

@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Patinart</title>
-  <!-- 同じ階層なので ./assets で正しい -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="./assets/js/main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Atelier - Art</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">My Atelier</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../games/index.html">Games</a></li>
+                <li><a href="./index.html" class="active">Art</a></li>
+                <li><a href="../devlog/index.html">Devlog</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- 左サイドバー -->
-  <aside class="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./art/index.html">Art</a></li>
-      <li><a href="./games/index.html">Games</a></li>
-      <li><a href="./devlog/index.html">Devlog</a></li>
-    </ul>
-  </aside>
+    <main class="container">
+        <h2>Art Gallery</h2>
+        <p>個人的なスケッチやイラストレーション。</p>
 
-  <!-- 右メイン -->
-  <main class="content">
-    <h1 class="page-title">Art</h1>
-    <div class="page-body">
-      <!-- ページごとの内容はここに入れる -->
-      <p>描いた絵です</p>
-    </div>
-  </main>
+        <div class="grid-gallery">
+            <div class="card">
+                <img src="https://placehold.co/400x500/2b221b/d4af37?text=Sketch+01" alt="Art 1">
+                <h3>Midnight Study</h3>
+            </div>
+            <div class="card">
+                <img src="https://placehold.co/400x500/2b221b/d4af37?text=Sketch+02" alt="Art 2">
+                <h3>Forest Spirit</h3>
+            </div>
+            <div class="card">
+                <img src="https://placehold.co/400x500/2b221b/d4af37?text=Sketch+03" alt="Art 3">
+                <h3>Old Machine</h3>
+            </div>
+        </div>
+    </main>
 
+    <footer>
+        <p>&copy; 2025 My Atelier. All rights reserved.</p>
+    </footer>
 </body>
 </html>
