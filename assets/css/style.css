@@ -198,6 +198,8 @@ body {
     font-style: italic;
     color: var(--c-patina);
     font-size: 0.9em; /* ベースよりさらに少し小さく */
+}
+
 
 /* =========================================
    共通見出し (Headings)
