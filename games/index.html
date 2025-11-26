@@ -3,51 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games - My Atelier</title>
+    <title>Games - Patinart</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Kaisei+Decol&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <div class="antique-frame"></div>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">Atelier Code</div>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="./index.html" class="active">Games</a></li>
-                <li><a href="../art/index.html">Art</a></li>
-                <li><a href="../devlog/index.html">Devlog</a></li>
+    <header id="sidebar">
+        <div class="brand">
+            <a href="../index.html" style="text-decoration: none;">
+                <h1 class="site-title">Patinart</h1>
+            </a>
+            <p class="site-subtitle">Patina & Art Works</p>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="./index.html" class="nav-link active">Games</a></li>
+                <li><a href="../art/index.html" class="nav-link">Art</a></li>
+                <li><a href="../devlog/index.html" class="nav-link">Devlog</a></li>
             </ul>
+            <div class="nav-footer">
+                <small>&copy; Patinart</small>
+            </div>
         </nav>
     </header>
 
-    <main class="container">
-        <div class="fade-in-up">
-            <h2>Game Collection</h2>
-            <p>制作したゲーム作品のアーカイブ。</p>
-        </div>
+    <main id="main-content">
+        <div class="container">
+            <h2 class="section-title" style="position: relative; top: 0; color: rgba(255,255,255,0.2);">Game Collection</h2>
+            <p style="margin-bottom: 3rem; color: var(--c-bronze);">これまでに制作したゲーム作品一覧</p>
 
-        <div class="grid-gallery fade-in-up">
-            <div class="card">
-                <img src="https://placehold.co/600x400/2b221b/d4af37?text=RPG+Project" alt="Game 1">
-                <h3>The Lost Clock</h3>
-                <p>時をかけるRPG。Unity製。</p>
-            </div>
-            
-            <div class="card">
-                <img src="https://placehold.co/600x400/2b221b/d4af37?text=Puzzle+Game" alt="Game 2">
-                <h3>Gear & Rose</h3>
-                <p>歯車をつなぐパズルゲーム。</p>
+            <div class="card-grid">
+                <article class="card">
+                    <div class="card-image">
+                        <a href="https://placehold.co/800x600/2F4F4F/FFF?text=Game+Screen+1" data-lightbox="games-archive" data-title="Project: Clockwork">
+                            <img src="https://placehold.co/600x400/2F4F4F/FFF?text=Project+Clockwork" alt="Game 1">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h4>Project: Clockwork</h4>
+                        <p>錆びついた時計塔を登るアクションゲーム。</p>
+                        <span class="btn-text">Released: 2024</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-image">
+                        <a href="https://placehold.co/800x600/556B2F/FFF?text=Game+Screen+2" data-lightbox="games-archive" data-title="Forest of Patina">
+                            <img src="https://placehold.co/600x400/556B2F/FFF?text=Forest+of+Patina" alt="Game 2">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h4>Forest of Patina</h4>
+                        <p>緑青の森を探索するADV。</p>
+                        <span class="btn-text">Released: 2023</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-image">
+                        <a href="https://placehold.co/800x600/3e2723/FFF?text=Game+Screen+3" data-lightbox="games-archive" data-title="Iron Heart">
+                            <img src="https://placehold.co/600x400/3e2723/FFF?text=Iron+Heart" alt="Game 3">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h4>Iron Heart</h4>
+                        <p>スチームパンクの世界観を持つRPG。</p>
+                        <span class="btn-text">In Development</span>
+                    </div>
+                </article>
             </div>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 My Atelier. All rights reserved.</p>
-    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
 </html>

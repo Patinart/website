@@ -3,45 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Atelier - Art</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <title>Art - Patinart</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Kaisei+Decol&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">My Atelier</div>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../games/index.html">Games</a></li>
-                <li><a href="./index.html" class="active">Art</a></li>
-                <li><a href="../devlog/index.html">Devlog</a></li>
+
+    <header id="sidebar">
+        <div class="brand">
+            <a href="../index.html" style="text-decoration: none;">
+                <h1 class="site-title">Patinart</h1>
+            </a>
+            <p class="site-subtitle">Patina & Art Works</p>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../games/index.html" class="nav-link">Games</a></li>
+                <li><a href="./index.html" class="nav-link active">Art</a></li>
+                <li><a href="../devlog/index.html" class="nav-link">Devlog</a></li>
             </ul>
+            <div class="nav-footer">
+                <small>&copy; Patinart</small>
+            </div>
         </nav>
     </header>
 
-    <main class="container">
-        <h2>Art Gallery</h2>
-        <p>個人的なスケッチやイラストレーション。</p>
+    <main id="main-content">
+        <div class="container">
+            <h2 class="section-title" style="position: relative; top: 0; color: rgba(255,255,255,0.2);">Art Gallery</h2>
+            <p style="margin-bottom: 3rem; color: var(--c-bronze);">スケッチ、イラストレーション、習作の記録</p>
 
-        <div class="grid-gallery">
-            <div class="card">
-                <img src="https://placehold.co/400x500/2b221b/d4af37?text=Sketch+01" alt="Art 1">
-                <h3>Midnight Study</h3>
-            </div>
-            <div class="card">
-                <img src="https://placehold.co/400x500/2b221b/d4af37?text=Sketch+02" alt="Art 2">
-                <h3>Forest Spirit</h3>
-            </div>
-            <div class="card">
-                <img src="https://placehold.co/400x500/2b221b/d4af37?text=Sketch+03" alt="Art 3">
-                <h3>Old Machine</h3>
+            <div class="masonry-grid">
+                <div class="art-item">
+                    <a href="https://placehold.co/800x1000/8B4513/FFF?text=Sketch" data-lightbox="art-gallery" data-title="Bronze Sketch">
+                        <img src="https://placehold.co/400x500/8B4513/FFF?text=Sketch" alt="Art 1">
+                    </a>
+                </div>
+                <div class="art-item">
+                    <a href="https://placehold.co/800x600/CD853F/FFF?text=Landscape" data-lightbox="art-gallery" data-title="Sunset Oxide">
+                        <img src="https://placehold.co/400x300/CD853F/FFF?text=Landscape" alt="Art 2">
+                    </a>
+                </div>
+                <div class="art-item">
+                    <a href="https://placehold.co/800x800/2F2F2F/FFF?text=Portrait" data-lightbox="art-gallery" data-title="Noir">
+                        <img src="https://placehold.co/400x400/2F2F2F/FFF?text=Portrait" alt="Art 3">
+                    </a>
+                </div>
+                <div class="art-item">
+                    <a href="https://placehold.co/600x900/408a7e/FFF?text=Patina" data-lightbox="art-gallery" data-title="Patina Study">
+                        <img src="https://placehold.co/300x450/408a7e/FFF?text=Patina" alt="Art 4">
+                    </a>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 My Atelier. All rights reserved.</p>
-    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>

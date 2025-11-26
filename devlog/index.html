@@ -3,45 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devlog - My Atelier</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet">
+    <title>Devlog - Patinart</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Kaisei+Decol&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <div class="antique-frame"></div>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">Atelier Code</div>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../games/index.html">Games</a></li>
-                <li><a href="../art/index.html">Art</a></li>
-                <li><a href="./index.html" class="active">Devlog</a></li>
+    <header id="sidebar">
+        <div class="brand">
+            <a href="../index.html" style="text-decoration: none;">
+                <h1 class="site-title">Patinart</h1>
+            </a>
+            <p class="site-subtitle">Patina & Art Works</p>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../games/index.html" class="nav-link">Games</a></li>
+                <li><a href="../art/index.html" class="nav-link">Art</a></li>
+                <li><a href="./index.html" class="nav-link active">Devlog</a></li>
             </ul>
+            <div class="nav-footer">
+                <small>&copy; Patinart</small>
+            </div>
         </nav>
     </header>
 
-    <main class="container">
-        <div class="fade-in-up">
-            <h2>Development Log</h2>
-            <p>制作過程の記録。</p>
-        </div>
+    <main id="main-content">
+        <div class="container">
+            <h2 class="section-title" style="position: relative; top: 0; color: rgba(255,255,255,0.2);">Development Log</h2>
+            <p style="margin-bottom: 3rem; color: var(--c-bronze);">日々の開発記録と雑記</p>
 
-        <ul class="devlog-list fade-in-up" style="list-style: none; margin-top: 2rem;">
-            <li style="margin-bottom: 2rem; border-bottom: 1px solid #3a3025; padding-bottom: 1rem;">
-                <span style="color: var(--accent-color); font-size: 0.9rem;">2025.01.20</span>
-                <h3><a href="./posts/2025-11-21.html" style="color: var(--text-color); text-decoration: none;">Webサイトを開設しました</a></h3>
-                <p style="font-size: 0.9rem; opacity: 0.8;">ポートフォリオサイトの作成にあたって、アンティークなデザインを採用しました。</p>
-            </li>
-        </ul>
+            <div class="log-list">
+                <a href="./posts/2025-01-xx.html" class="log-item">
+                    <span class="log-date">2025.01.20</span>
+                    <h4 class="log-title">Webサイト「Patinart」を開設しました</h4>
+                    <span class="arrow">&rarr;</span>
+                </a>
+
+                <a href="#" class="log-item">
+                    <span class="log-date">2024.12.15</span>
+                    <h4 class="log-title">Unityのシェーダー開発進捗</h4>
+                    <span class="arrow">&rarr;</span>
+                </a>
+
+                <a href="#" class="log-item">
+                    <span class="log-date">2024.11.08</span>
+                    <h4 class="log-title">キャラクターデザインのラフスケッチ</h4>
+                    <span class="arrow">&rarr;</span>
+                </a>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 My Atelier. All rights reserved.</p>
-    </footer>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/devlog.js"></script>
 </body>
 </html>
