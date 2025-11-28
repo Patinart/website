@@ -94,9 +94,13 @@ body {
 /* ハンバーガーボタン（PCでは非表示） */
 .menu-toggle { display: none; }
 
+
 /* =========================================
    4. メインコンテンツ & フレーム背景
-   ========================================= */
+========================================= */
+
+
+
 #main-content {
     margin-left: var(--sidebar-width);
     min-height: 100vh;
@@ -113,6 +117,8 @@ body {
     background-blend-mode: multiply;
     background-color: #000; 
 }
+
+
 
 /* コンテンツエリアの調整 */
 .section {

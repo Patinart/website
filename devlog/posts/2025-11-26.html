@@ -81,28 +81,17 @@
             <article class="article-container">
                 <header>
                     <span style="color: var(--c-patina); font-family: var(--f-en-body);">2025.11.26</span>
-                    <h1 style="font-size: 2rem; margin-top: 0.5rem;">歯車の回転と当たり判定</h1>
+                    <h1 style="font-size: 2rem; margin-top: 0.5rem;">Webサイト「Patinart」を開設しました</h1>
                 </header>
 
                 <div class="article-body">
-                    <p>今日はステージギミックの核となる「回転する歯車」の実装を行いました。</p>
-                    <p>単純に回転させるだけなら簡単ですが、プレイヤーが乗ったときに一緒に回転させたり、挟まれたときの処理を入れるとなると、少し複雑になります。</p>
+                    <p>久しぶりにHTMLやCSSを触りました。</p>
+                    <p>小学生の時はFFFTPというFTPソフトウェアを使ってデータの送受信をしていたのですが、かなり時代遅れのやり方だという事を知り怖くなりました。</p>
 
-                    <h3>物理演算の問題</h3>
-                    <p>最初はUnityの物理演算（Rigidbody）のみで制御しようとしましたが、プレイヤーが滑り落ちてしまう問題が発生しました。解決策として、プレイヤーが歯車に乗っている間だけ、親オブジェクトを歯車にする処理を追加しました。</p>
+                    <h3>ロゴの意味</h3>
+                    <P>飾り縁は古代ギリシャなどで使われていたアカンサス模様です。イチジクは私が好きな果物であるのと、リンゴと並んで世界で最古の果物と言われているのが理由です。</P>
+                    <P>リンゴは旧約聖書にも出てくるので古くからあるイメージが浸透しているでしょうが、イチジクはそこまで有名ではなさそうなので選びました。</P>
 
-                    <div class="code-block">
-                        // 擬似コードの例<br>
-                        if (isGrounded && target.tag == "Gear") {<br>
-                        &nbsp;&nbsp;this.transform.parent = target.transform;<br>
-                        }
-                    </div>
-
-                    <a href="https://placehold.co/800x500/2f4f4f/ffffff?text=Gear+Test" data-lightbox="post-images" data-title="動作テスト中の画面">
-                        <img src="https://placehold.co/800x500/2f4f4f/ffffff?text=Gear+Test" alt="Development Screen" class="article-image">
-                    </a>
-
-                    <p>これで安定して乗れるようになりました。次は背景の描画周りを強化して、もっとパティナ（緑青）っぽさを出していきたいと思います。</p>
                 </div>
 
                 <div style="margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between;">
