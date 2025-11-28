@@ -106,13 +106,7 @@ body {
     min-height: 100vh;
     padding: 4rem 2rem;
 
-    /* ▼▼ フレーム背景をここに移動しました ▼▼ */
-    background-image: url('../img/frame.png');
-    /* コンテンツに合わせてスクロールさせるか、固定するか */
-    background-attachment: fixed; 
-    background-size: cover;
-    background-position: center; /* 中央に配置 */
-    background-repeat: no-repeat;
+
     /* 背景色を透過させて重ねる */
     background-blend-mode: multiply;
     background-color: #000; 
