@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歯車の挙動実装 - Devlog</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Kaisei+Decol&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style>
+        .article-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 3rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .article-body {
+            margin-top: 2rem;
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+        .article-body h3 {
+            color: var(--c-patina);
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--c-bronze);
+            padding-bottom: 0.5rem;
+        }
+        .article-body p { margin-bottom: 1.5rem; }
+        .article-image {
+            width: 100%; max-width: 600px; height: auto;
+            margin: 2rem 0; border-radius: 4px; border: 1px solid var(--c-bronze);
+        }
+        /* コードブロック風のデザイン（技術記事用） */
+        .code-block {
+            background: #111;
+            padding: 1rem;
+            border-left: 3px solid var(--c-patina);
+            font-family: monospace;
+            color: #ddd;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="sidebar">
+        <div class="brand">
+            <a href="../../index.html" style="text-decoration: none;">
+                <h1 class="site-title">Patinart</h1>
+            </a>
+            <p class="site-subtitle">Patina & Art Works</p>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../../index.html" class="nav-link">Home</a></li>
+                <li><a href="../../games/index.html" class="nav-link">Games</a></li>
+                <li><a href="../../art/index.html" class="nav-link">Art</a></li>
+                <li><a href="../../devlog/index.html" class="nav-link active">Devlog</a></li>
+            </ul>
+            <div class="nav-footer">
+                <small>&copy; Patinart</small>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <div class="container">
+            
+            <article class="article-container">
+                <header>
+                    <span style="color: var(--c-patina); font-family: var(--f-en-body);">2025.12.14</span>
+                    <h1 style="font-size: 2rem; margin-top: 0.5rem;">リアル謎解きゲームをした話＆私の思考プロセスについて
+                    </h1>
+                </header>
+
+                <div class="article-body">
+                    <p>電車で移動する下町×リアル謎解きゲームをINTPの友達と遊んできました。（私はINTJ-A）</p>
+                    <p>結果……</p>
+                    <p>お互い効率廚すぎる。得手不得手がハッキリしてる。</p>
+                    <p>彼女はロジックの鬼（Ti）かつ、突飛なひらめき（Ne)が爆発していて、未確定情報が多い序盤の謎で無双してました。あとは文脈を読み解くのが必要な謎も得意でした。おそらく文章ベースの思考法なのでしょう。</p>
+                    <p>そして私は情報精査・収束（Ni）と構造化による時間管理や合理化（Te)が得意で、沢山の情報を必要とする終盤の謎解きが得意でした。あとはパズルや地図などイメージが必要な謎が得意でした。私は視覚ベースの思考法です。</p>
+                    <p>ハッキリと違いが分かってとても面白かったです。自然と相互補完の形になったのも納得がいきます。</p>
+                    <p>特に私が一番自覚している苦手な事が、「未確定情報を論理に取り入れ、それ自体を楽しむ」ということなので、それを自然に出来ていることに感銘を受けました。なぜ未確定情報が苦手なのかというと…</p>
+                    <p>私はとことん逆算（トップダウン）思考なのです。</p>
+                    <P>「最終目的（未来のビジョン＝Ni）」や「それに必要な行動（合理的選択＝Te)」が未確定だと本領を発揮できないのです。なので不安になってしまう。というか、混乱する。</P>
+                    <P>具体的に私の脳内を表すと以下です。</P>
+                    <P>「え、謎を解くための情報が少なすぎない…？取捨選択出来る程ない…これじゃ何が正しい情報か精査出来ない…」</P>
+                    <P>「次の駅の情報は進行度と共に開示されるんだ。じゃあ、どの電車に乗れば合理的に動けるかっていう一日の計画を立てられないよ！？居酒屋の席を予約してるから間に合わせたいのに…！」</P>
+                    <P>「冊子だけじゃなくてLINEでの謎解きも追加されるの！？えっ、二冊目もある…！？全体のクイズのボリュームすら分からないなら、時間配分ができないじゃないか…！！！」</P>
+                    <P>こんな感じでした。大パニックすぎて草。</P>
+                    <p>なので、自由気ままに謎を解くINTPがかなり輝いて見えました。私が苦手な事を楽しんでいる。すごい……。</p>
+                    <P>そしてここで見えてくるのが、彼女はとことんボトムアップ思考だということです。</P>
+                    <P>最終目的とか、合理化とか、どうでもいい。</P>
+                    <p>ただただ謎解きを、論理的思考を、楽しむ！！！</p>
+                    <P>私にない視点です。とてもいい刺激を受ける一日でした。</P>
+ 
+                    <h3>私が得意なボドゲの種類</h3>
+                    <P>日記、瞑想の内省に加え、AIの外的フィードバックで自己理解を進めているのですが、私の思考プロセスを話したら得意なゲームを教えてくれました。まずは分析結果から↓</P>
+                    <P>全体最適化／戦略の長期計画</P>
+                    <P>多数の条件から最短手を組む</P>
+                    <P>勝ち筋分析に圧倒的に強い</P>
+                    <P>情報が揃うと加速する</P>
+                    <P>計画の精度が高い</P>
+                    <P>「詰めるゲーム」「統合力がいるゲーム」が得意</P>]
+                    <P>ミスを最小化するプレイスタイル</P>
+                    <p>以上が私の思考特性らしいです。正直………今まで気が付いていなかったです。言語化されて、自分の強みが分かりました。だから卒論も誰よりも早く提出したし幹事も得意なのか…。そして以下が本題にあたる、得意なゲーム候補です</p>
+                    <P>【推理系（謎解き／コードネーム／シャーロック式ゲーム）】大謎／最終解答の収束。情報量が大量になるほど有利。</P>
+                    <P>【ユーロ（計画・最適化系：アグリコラ／カタン／テラフォーミングマーズ等）※一番得意らしい。】最適化・資源管理・点稼ぎ戦略。盤面全体から勝ち筋を構築するのは天職。中盤以降の強さが桁違い。</P>
+                    <P>【デッキ構築系（ドミニオン／アークライト系）】勝ち筋が一貫しているデッキを綺麗に組む。引きの確率管理が得意。“強い形”を高速で見抜く。</P>
+                    <P>【協力系（パンデミック等）】全体管理（最適ルート/優先順位）。時間制限プレッシャー下で強い。リーダー役をやると強すぎる。</P>
+                    <P>【戦略・陣取り系（将棋／チェス／Go／アブストラクト）】一貫戦略・長期計画が強い。整合性が取れた勝ち筋を積み上げる。</P>
+                    <P>以上が私の得意なゲーム一覧＆得意な理由らしいです。……なんか過大評価してないか？ほとんどやったことないゲームだったので、今度試してみたいです。基本的にどのゲームも大体強いらしい。</P>
+                    <P>そして唯一少し苦手らしいのが、パーティ系（ワードウルフ／お題系）らしいです。なんでバレてんだ……！？！？！？「正解構造」を探しに行くため、カオスなゲームは苦手らしいです。今まで私がボドゲに苦手意識があったのはこれのせいだ。</P>
+                    <p>こう冷静に分析するといかに私がガチガチ合理脳なのかがわかって面白いですね。なんか……得意分野がインテリキャラっぽすぎて笑える。AIに「あなたは極めて戦略的・合理的なのを自覚すべき」って怒られたことある人、私以外にいるのかな…。ふわふわ可愛い系じゃないらしい。</p>
+
+
+                </div>
+
+                <div style="margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between;">
+                    <a href="./2025-11-26.html" class="btn-text">&larr; 前の記事</a>
+                    <a href="../../devlog/index.html" class="btn-text">一覧に戻る</a>
+                    <span style="opacity: 0.3;">次の記事 &rarr;</span> 
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>
