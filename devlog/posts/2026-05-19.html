@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エラーのループがDOMを取り合う構造的問題である事を特定した話 - Devlog</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Kaisei+Decol&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style>
+        .article-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 3rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .article-body {
+            margin-top: 2rem;
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+        .article-body h3 {
+            color: var(--c-patina);
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--c-bronze);
+            padding-bottom: 0.5rem;
+        }
+        .article-body p { margin-bottom: 1.5rem; }
+        .article-image {
+            width: 100%; max-width: 600px; height: auto;
+            margin: 2rem 0; border-radius: 4px; border: 1px solid var(--c-bronze);
+        }
+        /* コードブロック風のデザイン（技術記事用） */
+        .code-block {
+            background: #111;
+            padding: 1rem;
+            border-left: 3px solid var(--c-patina);
+            font-family: monospace;
+            color: #ddd;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="sidebar">
+        <div class="brand">
+            <a href="../../index.html" style="text-decoration: none;">
+                <h1 class="site-title">Patinart</h1>
+            </a>
+            <p class="site-subtitle">Patina & Art Works</p>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../../index.html" class="nav-link">Home</a></li>
+                <li><a href="../../games/index.html" class="nav-link">Games</a></li>
+                <li><a href="../../art/index.html" class="nav-link">Art</a></li>
+                <li><a href="../../devlog/index.html" class="nav-link active">Devlog</a></li>
+            </ul>
+            <div class="nav-footer">
+                <small>&copy; Patinart</small>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <div class="container">
+            
+            <article class="article-container">
+                <header>
+                    <span style="color: var(--c-patina); font-family: var(--f-en-body);">2026.05.19</span>
+                    <h1 style="font-size: 2rem; margin-top: 0.5rem;">エラーのループがDOMを取り合う構造的問題である事を特定した話
+                    </h1>
+                </header>
+
+                <div class="article-body">
+            
+                 数か月まるまる更新しておりませんでしたが、かなり進捗が進んでいます。<br><br>
+
+                 ①エンジンの変更<br>
+                 ②プロトタイプ完成<br>
+                 ③タイトルロゴ完成<br>
+                 ④BGM一曲完成<br>
+                 ⑤シナリオプロット完成<br><br>
+
+                
+                 それぞれ別の記事で取り上げようと思っています。<br>
+                 今回の記事は①についての話になります。<br><br>
+
+                 結論から言うと、ゲームエンジンに使っていたTwineのフォーマットのSugarCubeのHTML描写フェーズと、<br>
+                 JSの実行フェーズの相性が悪く、エラーのループに陥っていた話です。
+
+                     <div class="code-block">
+                        // エラーのループ<br>
+                        描写フェーズと実行フェーズがかみ合わない⇒JSでパッセージ描写後に実行フェーズに移行するように$('document').on()で管理する⇒DOM構築が重複しエラ―⇒JSのDOM削除⇒（最初に戻る）……<br>
+                
+                    </div>
+
+                 ……といった状態です。<br>
+                 これはもうコード修正で解決する問題ではなく、ゲームエンジンとJSの相性が悪いという構造の問題です。<br>
+                 コードを修正したところで構造に問題があるので、エラーを繰り返すだけです。<br><br>
+                 
+                 そこでゲームエンジンをTwineからティラノスクリプトに変更し、難なくプロトタイプを完成させたという話でした。
+                 
+  
+                </div>
+
+                <div style="margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between;">
+                    <a href="./2025-11-26.html" class="btn-text">&larr; 前の記事</a>
+                    <a href="../../devlog/index.html" class="btn-text">一覧に戻る</a>
+                    <span style="opacity: 0.3;">次の記事 &rarr;</span> 
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>
