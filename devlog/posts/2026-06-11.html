@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ネットニュースの自動収集＆要約システムを構築した話 - Devlog</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Kaisei+Decol&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style>
+        .article-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 3rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .article-body {
+            margin-top: 2rem;
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+        .article-body h3 {
+            color: var(--c-patina);
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--c-bronze);
+            padding-bottom: 0.5rem;
+        }
+        .article-body p { margin-bottom: 1.5rem; }
+        .article-image {
+            width: 100%; max-width: 600px; height: auto;
+            margin: 2rem 0; border-radius: 4px; border: 1px solid var(--c-bronze);
+        }
+        /* コードブロック風のデザイン（技術記事用） */
+        .code-block {
+            background: #111;
+            padding: 1rem;
+            border-left: 3px solid var(--c-patina);
+            font-family: monospace;
+            color: #ddd;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="sidebar">
+        <div class="brand">
+            <a href="../../index.html" style="text-decoration: none;">
+                <h1 class="site-title">Patinart</h1>
+            </a>
+            <p class="site-subtitle">Patina & Art Works</p>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../../index.html" class="nav-link">Home</a></li>
+                <li><a href="../../games/index.html" class="nav-link">Games</a></li>
+                <li><a href="../../art/index.html" class="nav-link">Art</a></li>
+                <li><a href="../../devlog/index.html" class="nav-link active">Devlog</a></li>
+            </ul>
+            <div class="nav-footer">
+                <small>&copy; Patinart</small>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <div class="container">
+            
+            <article class="article-container">
+                <header>
+                    <span style="color: var(--c-patina); font-family: var(--f-en-body);">2026.06.11</span>
+                    <h1 style="font-size: 2rem; margin-top: 0.5rem;">ネットニュースの自動収集＆要約システムを構築した話
+                    </h1>
+                </header>
+
+                <div class="article-body">
+            
+                 <br>皆さんはネットニュースを見ている時にこう思った事はありませんか？<br><br>
+
+                 <b>いらない情報が多すぎる……</b><br><br>
+
+                 時間はかかるし、脳の負荷もかかるし、嫌になりますよね。<br>
+                 そういった悩みを解決するために、無料＆ノンコードでできるシステムを構築しました。<br><br>
+
+                 
+
+                      <a href="/devlog/img/2026-06-11.jpg" data-lightbox="post-images" data-title="Notion">
+                        <img src="/devlog/img/2026-06-11.jpg" alt="Notionで蓄積された記事" class="article-image"></a><br>
+
+                 ↑最終イメージはこんな感じです（Notion）<br><br>
+
+                 結果として朝の10分で特定のネットニュース記事を読めるようになり、大幅な効率化を実現しています。<br><br>
+                 <h3>ざっくりとした仕組みの説明</h3>
+
+
+                     <div class="code-block">
+                        //  使用技術・ツール<br>
+                     １．Make.com（iPaaS）<br>２．OpenAI API<br>３．Notion API<br>４．Googleアラート<br>５．RSS<br>６．HTTP
+                
+                    </div>
+
+                 ↑全て無料で使用できるツールです。<br>
+
+                     <div class="code-block">
+                        //  システムの仕組み<br>
+                     １．Googleアラートでニュース記事を取捨選択<br>
+                     ２．RSSで最新情報取得<br>
+                     ３．OpenAI APIでURL抜き出し<br>
+                     ４．HTTPで通信<br>
+                     ５．OpenAI APIで3行要約＆重要度判定<br>
+                     ６．Notion APIで収集＆蓄積
+                    </div>
+
+                 ↑こういった構造です。<br>
+                 自動化プラットフォームで色々連携させているわけですね。APIが便利すぎる。無限の可能性を感じます。<br>
+
+                 <a href="/devlog/img/2026-06-11a.jpg" data-lightbox="post-images" data-title="MAKEシナリオ">
+                        <img src="/devlog/img/2026-06-11a.jpg" alt="MAKEシナリオ" class="article-image"></a>
+
+
+                </div>
+
+                ↑MAKEのシナリオはこんな感じです。ネットニュース自動収取＆要約システムというと複雑そうですが、こう見ると意外とシンプルですね。<br>
+                一番試行錯誤したのはプロンプト指示文です。あまり重要度が高くない記事を集められても困ってしまいます。ある程度はGoogleアラートのマイナス検索で弾けますが。<br>
+                そこで私が実際にしたプロンプト指示文を貼っておきます。<br>
+                 
+                
+
+                     <div class="code-block">
+                        //  プロンプト指示文<br>
+                     あなたは「長期・分散の投資学習」向けニュース編集者です。<br>
+                     {{3.data}}を読んで①②③を実行してください。最後に提示するフォーマットに従って出力してください。<br>
+                     ①重要度を「高いor標準or低い」で判定してください。以下を目安にしてください。<br>
+                    高い   - 80-100: 金利/物価/景気の転換、重要政策、供給網・エネルギーの大きな変化<br>
+                    標準   - 50-79 : 継続観測に価値、複数国に波及、構造的テーマ<br>
+                    低い   - 0-49  : 個人の意見、煽り、まとめ、投資勧誘、短期売買向け<br>
+                    ②内容を150文字で箇条書きで三つで要約してください。<br>
+                    ③根拠を因果が分かるように400文字で要約してください。専門用語は初心者にもわかるように単語の後に（）で注釈を入れてください。<br>
+                    以上の①②③を以下のフォーマットに当てはめて出力してください。①②③の文字は消してください。無駄なく端的な文章にしてください。<br><br>
+
+                    重要度：①<br>
+                    -②<br>
+                    -②<br>
+                    -②<br><br>
+                    【根拠】③
+            
+                    </div>
+
+                    プロンプトはこんな内容です。実行順を分かりやすく明記することで、出力がスムーズになっていると思います。<br>
+                    また、Notionのフィルター機能を使えば、重要度が高い記事のみを表示させることが出来ます。これはかなり便利ですね。<br><br>
+
+                    以上がネットニュースの自動収集＆要約システムを構築した話でした。次もまたなにか日常の困りごとがあったら自動化システムを作ってみたいと思います。<br>
+
+
+                <div style="margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between;">
+                    <a href="./2026-05-19.html" class="btn-text">&larr; 前の記事</a>
+                    <a href="../../devlog/index.html" class="btn-text">一覧に戻る</a>
+                    <span style="opacity: 0.3;">次の記事 &rarr;</span> 
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>
